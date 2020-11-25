@@ -134,26 +134,23 @@ while not game_over:
                         label = myfont.render("Player 1 wins!!", 1, RED)
                         screen.blit(label, (40, 10))
                         game_over = True
-                        turn += 1
-                        turn = turn % 2
 
-    # Player
-    if turn == AI and not game_over:
-        posx = event.pos[0]
-        col = int(math.floor(posx/SQUARESIZE))
 
-        if is_valid_location(board, col):
-            row = get_next_open_row(board, col)
-            drop_piece(board, row, col, 2)
+            # # Ask for Player 2 Input
+            else:
+                posx = event.pos[0]
+                col = int(math.floor(posx/SQUARESIZE))
 
-            if winning_move(board, 2):
-                label = myfont.render("Player 2 wins!!", 1, YELLOW)
-                screen.blit(label, (40, 10))
-                game_over = True
+                if is_valid_location(board, col):
+                    row = get_next_open_row(board, col)
+                    drop_piece(board, row, col, 2)
 
+                    if winning_move(board, 2):
+                        label = myfont.render("Player 2 wins!!", 1, YELLOW)
+                        screen.blit(label, (40, 10))
+                        game_over = True
             print_board(board)
             draw_board(board)
-
             turn += 1
             turn = turn % 2
 

@@ -120,6 +120,8 @@ def score_position(board, piece):
 def is_terminal_node(board):
 	return winning_move(board, PLAYER_PIECE) or winning_move(board, AI_PIECE) or len(get_valid_locations(board)) == 0
 
+
+# minimax algorithm implementation
 def minimax(board, depth, alpha, beta, maximizingPlayer):
 	valid_locations = get_valid_locations(board)
 	is_terminal = is_terminal_node(board)
@@ -266,12 +268,9 @@ while not game_over:
 	# # Ask for Player 2 Input
 	if turn == AI and not game_over:				
 
-		#col = random.randint(0, COLUMN_COUNT-1)
-		#col = pick_best_move(board, AI_PIECE)
 		col, minimax_score = minimax(board, 5, -math.inf, math.inf, True)
 
 		if is_valid_location(board, col):
-			#pygame.time.wait(500)
 			row = get_next_open_row(board, col)
 			drop_piece(board, row, col, AI_PIECE)
 
